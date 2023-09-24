@@ -1,0 +1,39 @@
+1. **Import Required Libraries:**
+   - Install the Required libraries from requirements.txt
+   - You import the necessary libraries, including `requests` for making HTTP requests, `pandas` for working with CSV data, `time` for measuring elapsed time, `BeautifulSoup` for parsing HTML, and `json` for handling JSON data.
+
+2. **Defining a Function for Scraping Product Details:**
+   - A function `scrape_product_details(url)` that takes a URL as input and scrapes product details from that URL.
+   - This function sends an HTTP GET request to the URL with custom headers to mimic a web browser.
+   - It checks the response status code and, if successful (status code 200), parses the HTML content using BeautifulSoup.
+   - The function extracts product details such as title, image URL, price, and product description from the HTML.
+   - If any errors occur during the process, the function handles them and prints an error message.
+
+3. **Specify Headers:**
+   - Custom headers to include in our HTTP requests. These headers mimic those of a web browser to avoid detection as a scraper.
+
+4. **Read ASIN and Country Data from CSV:**
+   - Specify the path to a CSV file (`asin_country_Csv`) containing ASIN and country data.
+   - Create an empty list called `data` to store the scraped product details.
+
+5. **Batch Processing of URLs:**
+   - Read the CSV file into a Pandas DataFrame (`df`) to access the ASIN and country data.
+   - Set a batch size (`batch_size`) to process URLs in batches for efficiency.
+   - Start a timer to measure the elapsed time for processing.
+
+6. **Loop through Batches and URLs:**
+   - loop through the DataFrame in batches, with each batch containing a portion of the ASINs and countries.
+   - For each URL in the batch, you construct the Amazon product URL based on the country and ASIN.
+   - Call the `scrape_product_details` function to scrape product details from the URL.
+   - If the scraping is successful (product details are obtained), you append the details to the `data` list.
+
+7. **Measure Elapsed Time:**
+   - After processing each batch of URLs, you calculate and print the elapsed time.
+
+8. **Save Scraped Data to JSON:**
+   - Once all URLs have been processed, you save the scraped product details in a JSON file (`scraped_data.json`) using the `json.dump` method.
+
+9. **Print Summary:**
+   - Finally, print the total number of URLs scraped.
+
+This approach efficiently scrapes product details from Amazon product pages while handling errors and providing feedback on the progress. It's structured well for handling a large number of URLs in batches, which can be useful for web scraping tasks.
